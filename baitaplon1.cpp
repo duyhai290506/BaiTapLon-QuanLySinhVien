@@ -259,19 +259,15 @@ void xuatDanhSachSinhVienTheoLop(SV sv1[], int n, char a[]) {
 
 void tra_ten_cuar_sv(char a[], char w[]) {
 	int count = dem_so_luong_ky_tu(a) - 1;
-	// SỬA LỖI: Thêm điều kiện count >= 0 để tránh crash nếu chuỗi rỗng
 	while (count >= 0 && (a[count] == ' ' || a[count] == '\n' || a[count] == ',' || a[count] == '.')) {
 		count--;
 	}
 	int i = 0;
-	// SỬA LỖI: Đảo count >= 0 lên trước để tránh lỗi đọc bộ nhớ âm a[-1]
 	while (count >= 0 && a[count] != ' ') {
 		w[i++] = a[count];
 		count--;
 	}
 	w[i] = '\0';
-
-	// Lat nguoc ten lai
 	int left = 0;
 	int right = i - 1;
 	while (left < right) {
@@ -426,10 +422,9 @@ void sapXepDanhSachSinhVienTheoTen(SV ds[], int n) {
 
 void capNhatSinhVien(SV sv1[], int& n) {
 	for (int i = 0; i < n; i++) {
-		// Chuẩn hóa Tên
+
 		ham_viet_hoa_dung(sv1[i].ten);
 		ham_xoa_khoang_trang(sv1[i].ten);
-		// BỔ SUNG: Chuẩn hóa cả Mã Lớp cho đồng bộ
 		ham_viet_hoa_dung(sv1[i].maLop);
 		ham_xoa_khoang_trang(sv1[i].maLop);
 	}
@@ -452,7 +447,6 @@ void capNhatSinhVien(SV sv1[], int& n) {
 	printf("\nNhap ma lop ban muon tim kiem: ");
 	fgets(lopCanTim, sizeof(lopCanTim), stdin);
 	xoaXuongDong(lopCanTim);
-	// BỔ SUNG: Chuẩn hóa từ khóa lớp trước khi tìm
 	ham_viet_hoa_dung(lopCanTim);
 	ham_xoa_khoang_trang(lopCanTim);
 	xuatDanhSachSinhVienTheoLop(sv1, n, lopCanTim);
@@ -461,7 +455,6 @@ void capNhatSinhVien(SV sv1[], int& n) {
 	printf("\nNhap ten sinh vien muon tim kiem (chi nhap ten, vi du: An): ");
 	fgets(tenCanTim, sizeof(tenCanTim), stdin);
 	xoaXuongDong(tenCanTim);
-	// BỔ SUNG: Chuẩn hóa từ khóa tên trước khi tìm
 	ham_viet_hoa_dung(tenCanTim);
 	ham_xoa_khoang_trang(tenCanTim);
 	timSinhVienTheoTen(sv1, n, tenCanTim);
